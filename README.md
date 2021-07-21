@@ -32,7 +32,7 @@
 ## Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :residences
 
 ## purchasesテーブル
 
@@ -44,9 +44,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :send
+- has_one :residences
 
-## sendテーブル
+## residencesテーブル
 
 |Column        |Type       |Options                        |
 |--------------|-----------|-------------------------------|
