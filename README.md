@@ -13,7 +13,7 @@
 |birthday           |date   |null: false               |
 ## Association
 
-- has_many :purchases
+- has_many :purchase
 - has_many :items
 
 ## itemsテーブル
