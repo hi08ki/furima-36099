@@ -16,5 +16,6 @@ class Item < ApplicationRecord
     validates :burden_id
     validates :delivery_id
     validates :days_delivery_id
-    validates :price, format: {with: VALID_PRICEL_HALF},length: {minimum: 3, maxinum: 7},numericality: { only_integer: true,
-      greater_than: 300, less_than: 9999999
+    validates :price, format: {with: VALID_PRICEL_REGEX},length: {minimum: 3, maxinum: 7},numericality: { only_integer: true, greater_than: 300, less_than: 9999999 }
+  end
+end
