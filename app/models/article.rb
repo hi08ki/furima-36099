@@ -2,7 +2,7 @@ class Article < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :burden 
   belongs_to :category
-  belongs_to :daysdelivery
+  belongs_to :days_delivery
   belongs_to :delivery
   belongs_to :status
 
