@@ -8,16 +8,16 @@ class User < ApplicationRecord
     validates :nickname
     validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "Please input letters and numbers"}
   end
-  with_options presence: true do, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/} do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/} do
     validates :last_name
     validates :first_name
   end
-  with_options presence: true do, format: {with: /\A[ァ-ヶー－]+\z/ }
+  with_options presence: true, format: {with: /\A[ァ-ヶー－]+\z/ } do
     validates :last_name_kana
     validates :first_name_kana
     validates :birthday
   end
        
   # has_many :purchase
-  # has_many :item
+  has_many :items
 end
