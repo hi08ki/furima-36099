@@ -15,12 +15,14 @@ class Item < ApplicationRecord
     validates :image
     validates :product_name
     validates :description
-    validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
-    validates :status_id, numericality: { other_than: 1 , message: "can't be blank"}
-    validates :burden_id, numericality: { other_than: 1 , message: "can't be blank"}
-    validates :delivery_id, numericality: { other_than: 1 , message: "can't be blank"}
-    validates :days_delivery_id, numericality: { other_than: 1 , message: "can't be blank"}
     validates :price, format: {with: VALID_PRICEL_REGEX},length: {minimum: 3, maxinum: 7},numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
+  end
+  with_options presence: true, numericality: { other_than: 1 , message: "can't be blank"} do
+    validates :category_id
+    validates :status_id
+    validates :burden_id
+    validates :delivery_id
+    validates :days_delivery_id  
   end
   belongs_to :user
   has_one_attached :image
