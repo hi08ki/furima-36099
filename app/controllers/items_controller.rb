@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!, only: :new, :create
 
   def index
-    @items_category = Item.where("buyer_id IS NULL AND trading_status = 0 AND category_id < 200").order(created_at: "DESC")
-    @items_brand = Item.where("buyer_id IS NULL AND  trading_status = 0 AND brand_id = 1").order(created_at: "DESC")
+    # @items_category = Item.where("buyer_id IS NULL AND trading_status = 0 AND category_id < 200").order(created_at: "DESC")
+    # @items_brand = Item.where("buyer_id IS NULL AND  trading_status = 0 AND brand_id = 1").order(created_at: "DESC")
   end
 
   def new
@@ -12,18 +12,7 @@ class ItemsController < ApplicationController
     # @category_parent = Category.where(ancestry: nil)
       # 親カテゴリーが選択された後に動くアクション
   end
-  
-  def get_category_child
-      @category_child = Category.find("#{params[:parent_id]}").children
-      render json: @category_child
-  end
 
-  def get_category_grandchild
-    @category_grandchild = Category.find("#{params[:child_id]}").children
-    render json: @category_grandchild
-  end
-
-  
   def create
     @item = Item.new(item_params)
     if @item.valid?
