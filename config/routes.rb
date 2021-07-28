@@ -10,12 +10,11 @@ Rails.application.routes.draw do
   end
 
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'items#index' 
-  resources :articles
-
-  resource :user,only: [:show, :index, :edit, :update] do
-  resource :items,only: [:index, :new, :create] do
+  devise_for :users
+  root to: 'items#index'
+  # resource :user,only: [:show, :index, :edit, :update] 
+  resources :items,only: [:index, :new, :create]
+  
   end
 end
 

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new, :create
+  before_action :authenticate_user!, only: :new 
+  before_action :authenticate_user!, only: :create
 
   def index
     # @items_category = Item.where("buyer_id IS NULL AND trading_status = 0 AND category_id < 200").order(created_at: "DESC")
