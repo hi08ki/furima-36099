@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   with_options presence: true do
     validates :nickname
+    validates :birthday
     validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "Please input letters and numbers"}
   end
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/} do
@@ -15,7 +16,6 @@ class User < ApplicationRecord
   with_options presence: true, format: {with: /\A[ァ-ヶー－]+\z/ } do
     validates :last_name_kana
     validates :first_name_kana
-    validates :birthday
   end
        
   # has_many :purchase
