@@ -7,9 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.item_imgs.new
-    # @category_parent = Category.where(ancestry: nil)
-      # 親カテゴリーが選択された後に動くアクション
   end
 
   def create
@@ -20,6 +17,10 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @item = Item.find(params[:id])
+  end 
 
   private
 
