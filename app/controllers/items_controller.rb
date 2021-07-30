@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
-  before_action :authenticate_user!, only: [:show,:edit,:update]
   before_action :contributor_confirmation, only: [:edit,:update]
   
   
@@ -45,7 +44,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  ef move_to_update
+  def contributor_confirmation
     unless current_user.id == @item.user_id
      redirect_to root_path
     end
