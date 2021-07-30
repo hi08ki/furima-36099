@@ -1,10 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :user
   belongs_to :burden 
   belongs_to :category
   belongs_to :days_delivery
   belongs_to :delivery
   belongs_to :status
+  has_one_attached :image
 
   # enum status_id: ["新品・未使用","未使用に近い","目立った傷や汚れなし","やや傷や汚れあり","傷や汚れあり","全体的に状態が悪い"]
   # enum burden_id: ["着払い(購入者負担)","送料込み(出品者負担)"]
@@ -24,6 +26,8 @@ class Item < ApplicationRecord
     validates :delivery_id
     validates :days_delivery_id  
   end
-  belongs_to :user
-  has_one_attached :image
+  
+  def was_attached?
+    self.image.attached?
+  end
 end
