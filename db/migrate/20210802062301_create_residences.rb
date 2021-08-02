@@ -1,7 +1,7 @@
 class CreateResidences < ActiveRecord::Migration[6.0]
   def change
     create_table :residences do |t|
-      t.references :purchase,  null: false, foreign_key: true
+      t.references :order,  null: false, foreign_key: true
       t.string :postal_code,   null: false
       t.integer  :delivery_id, null: false 
       t.string :municipality,  null: false  
