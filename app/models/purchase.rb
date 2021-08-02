@@ -10,8 +10,9 @@ class Purchase
   with_options presence: true do
     validates :user
     validates :item
-    
+
   def save
-    # 各テーブルにデータを保存する処理を書く
+    # ユーザーの情報を保存し、「user」という変数に代入
+    user = User.create(nickname: nickname, last_name: last_name, farst_name: farst_name, last_name_kana: last_name_kana, farst_name_kana: farst_name_kana)
   end
 end
