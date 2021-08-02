@@ -2,22 +2,27 @@ class OrdersController < ApplicationController
   def index
     # Formオブジェクトのインスタンスを作成して、インスタンス変数に代入する
     @orders = Order.new
+    @item = Item.find(params[:item_id])
   end
 
   def new
+    @item = Item.new
   end
 
-  # def create
-  #   user = User.create(user_params)
-  #   Residence.create(residence_params(user))
-  #   Purchase.create(purchase_params(user))
-  #   redirect_to action: :index
-  # end
+  def create
+    @item = Item.new(order_params)
+    if @item.valid?
+      @item.save
+      redirect_to root_path
+    else
+      render :index
+    end
+  end
 
   private
 
-  def user_params
-    params.permit(:name, :name_reading, :nickname)
+  def order_params
+    params.permit(:product_name, :price, :burden_id, :image)
   end
 
 #   def address_params(user)

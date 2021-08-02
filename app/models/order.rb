@@ -4,7 +4,9 @@ class Order < ApplicationRecord
   has_one :residence
 
   with_options presence: true do
-    validates :user_id
-    validates :item
+    validates :product_name
+    validates :price
+    validates :burden_id
+    validates :image
   end
 end

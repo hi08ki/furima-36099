@@ -1,7 +1,7 @@
 class Residence < ApplicationRecord
   belongs_to :order
 
-  with_options presence: true
+  with_options presence: true do
     validates :postal_code
     validates :delivery_id
     validates :municipality
@@ -10,3 +10,4 @@ class Residence < ApplicationRecord
     validates :phone_number
   end
 end
+
