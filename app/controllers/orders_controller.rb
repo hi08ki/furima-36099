@@ -1,18 +1,18 @@
-class PurchasesController < ApplicationController
+class OrdersController < ApplicationController
   def index
     # Formオブジェクトのインスタンスを作成して、インスタンス変数に代入する
-    @user_item = UserItem.new
+    @orders = Order.new
   end
 
   def new
   end
 
-  def create
-    user = User.create(user_params)
-    Residence.create(residence_params(user))
-    Purchase.create(purchase_params(user))
-    redirect_to action: :index
-  end
+  # def create
+  #   user = User.create(user_params)
+  #   Residence.create(residence_params(user))
+  #   Purchase.create(purchase_params(user))
+  #   redirect_to action: :index
+  # end
 
   private
 
