@@ -2,6 +2,8 @@ class OrderAddress
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :postal_code, :delivery_id, :municipality, :address, :building_name, :phone_number
 
+  attr_accessor :token
+
   # extend ActiveHash::Associations::ActiveRecordExtensions
   # belongs_to :delivery
 
@@ -12,6 +14,7 @@ class OrderAddress
     validates :municipality
     validates :address
     validates :phone_number, format: { with: /\A0[0-9]+\z/, message: 'number is invalid. Include half-width numbers' } 
+    validates :token, presence: true
   end
 
   def save
