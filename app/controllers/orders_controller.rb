@@ -5,7 +5,14 @@ class OrdersController < ApplicationController
 
   def index
     @order_address = OrderAddress.new
+    if current_user == @item.user
+       redirect_to root_path
+    else 
+      redirect_to user_session_path
+    end
   end
+
+  
 
   def create
     # binding.pry
@@ -40,6 +47,6 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency:'jpy'
     )
-   end
+  end
 
 end
