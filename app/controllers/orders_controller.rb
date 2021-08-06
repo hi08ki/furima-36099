@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :move_to_signed_in, expect: [:index]
+  before_action :authenticate_user!, except: [:index,:create]
   before_action :set_item, only:[:index, :create]
   before_action :sold_out_item, only: [:index, :create]
 
@@ -42,11 +42,5 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency:'jpy'
     )
-  end
-
-  def move_to_signed_in
-    unless user_signed_in?
-      redirect_to '/users/sign_in'
-    end
   end
 end
