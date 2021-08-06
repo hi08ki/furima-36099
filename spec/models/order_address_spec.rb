@@ -47,6 +47,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include()
       end
+      it 'delivery_idが1だと出品できない' do
+        @order_address.delivery_id = 1
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include()
+      end
       it 'municipalityが空だと購入できない' do
         @order_address.municipality = ''
         @order_address.valid?
