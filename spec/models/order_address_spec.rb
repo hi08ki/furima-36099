@@ -10,9 +10,28 @@ RSpec.describe OrderAddress, type: :model do
       it '全ての値が正しく入力されていれば購入できること' do
         expect(@order_address).to be_valid
       end
+      it 'building_nameが抜けていても登録できること' do
+        @order_address.building_name = 'abcde'
+        expect(@order_address).to be_valid
+      end
     end
 
     context '商品購入がうまくいかない時' do
+      it 'user_idが空だと購入できない' do
+        @order_address.user_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空だと購入できない' do
+        @order_address.item_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'tokenが空だと購入できない' do
+        @order_address.token = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
       it 'postal_codeが空だと購入できない' do
         @order_address.postal_code = ''
         @order_address.valid?
@@ -45,6 +64,16 @@ RSpec.describe OrderAddress, type: :model do
       end
       it 'phone_numberが9桁かつハイフンありでは購入できない' do
         @order_address.phone_number = "090-123-456"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number number is invalid. Include half-width numbers") 
+      end
+      it 'phone_numberが12桁以上では購入できない' do
+        @order_address.phone_number = "090123456789"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number number is invalid. Include half-width numbers") 
+      end
+      it 'phone_numberが英数混合では購入できない' do
+        @order_address.phone_number = "090abcd1234"
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number number is invalid. Include half-width numbers") 
       end

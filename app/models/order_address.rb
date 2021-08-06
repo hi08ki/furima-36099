@@ -1,13 +1,11 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :delivery_id, :municipality, :address, :building_name, :phone_number
-
-  attr_accessor :token
-
-  # extend ActiveHash::Associations::ActiveRecordExtensions
-  # belongs_to :delivery
+  attr_accessor :user_id, :item_id, :token, :postal_code, :delivery_id, :municipality, :address, :building_name, :phone_number
 
   with_options presence: true do
+    validates :item_id
+    validates :user_id
+    validates :token
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :delivery_id
     validates :municipality
