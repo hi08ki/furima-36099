@@ -1,11 +1,14 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
-  before_action :contributor_confirmation, only: [:edit,:update,:destroy]
   before_action :set_item, only:[:show,:edit,:update,:destroy]
+  before_action :set_items, only:[:edit, :update]
+  before_action :contributor_confirmation, only: [:edit,:update,:destroy]
+  
   
   
   def index
     @items = Item.includes(:user).order("created_at DESC")
+    
   end
 
   def new
@@ -48,6 +51,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_items
+    redirect_to root_path if @item.order.present?
   end
 
   def contributor_confirmation

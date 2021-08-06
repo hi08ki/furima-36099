@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   belongs_to :burden 
@@ -7,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :delivery
   belongs_to :status
   has_one_attached :image
+  has_one :order
   
   VALID_PRICEL_REGEX =  /\A[0-9]+\z/
   with_options presence: true do
