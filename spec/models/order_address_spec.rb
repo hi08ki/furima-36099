@@ -11,7 +11,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address).to be_valid
       end
       it 'building_nameが抜けていても登録できること' do
-        @order_address.building_name = 'abcde'
+        @order_address.building_name = ''
         expect(@order_address).to be_valid
       end
     end

@@ -7,7 +7,7 @@ class OrderAddress
     validates :user_id
     validates :token
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
-    validates :delivery_id
+    validates :delivery_id, numericality: { other_than: 1 , message: "can't be blank"} 
     validates :municipality
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'number is invalid. Include half-width numbers' } 
