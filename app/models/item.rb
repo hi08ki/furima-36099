@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :status
   has_one_attached :image
   has_one :order
+  has_many :comments, dependent: :destroy
   
   VALID_PRICEL_REGEX =  /\A[0-9]+\z/
   with_options presence: true do
