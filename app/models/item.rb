@@ -10,6 +10,8 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
   has_many :comments, dependent: :destroy
+  has_many :likes
+  has_many :users, through: :likes
   
   VALID_PRICEL_REGEX =  /\A[0-9]+\z/
   with_options presence: true do
@@ -28,5 +30,9 @@ class Item < ApplicationRecord
 
   def was_attached?
     self.image.attached?
+  end
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 end

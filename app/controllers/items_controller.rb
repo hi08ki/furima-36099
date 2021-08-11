@@ -27,6 +27,8 @@ class ItemsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @item.comments.order(created_at: :desc)
+    @item = Item.find(params[:id])
+    @like = Like.new
   end 
 
   def edit
