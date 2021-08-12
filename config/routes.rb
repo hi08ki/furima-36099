@@ -5,8 +5,4 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create]
     resources :comments, only: :create
   end
-  resources :posts do
-    post 'add' => 'likes#create'
-    delete '/add' => 'likes#destroy'
-  end
 end

@@ -10,8 +10,6 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
   has_many :comments, dependent: :destroy
-  has_many :likes
-  has_many :users, through: :likes
   
   VALID_PRICEL_REGEX =  /\A[0-9]+\z/
   with_options presence: true do
